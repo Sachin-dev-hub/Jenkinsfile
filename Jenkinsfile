@@ -8,21 +8,19 @@ pipeline {
                 sh 'mvn clean deploy -Dmaven.test.skip=true'
             }
         }
-    
+
         stage('Test') {
             steps {
-				echo 'test starting'
-                sh 'surefire-report:report'
-				echo 'test completed'
+                echo '🧪 Running tests...'
+                sh 'mvn surefire-report:report'
+                echo '✅ Test completed.'
             }
         }
 
-    
         stage('SonarQube Analysis') {
-			environment {
-				scannerHome = tool 'sonarqube-scanner'
-			}
-				
+            environment {
+                scannerHome = tool 'sonarqube-scanner'
+            }
             steps {
                 withSonarQubeEnv('sonarqube-scanner') {
                     sh "${scannerHome}/bin/sonar-scanner"
@@ -40,13 +38,4 @@ pipeline {
         }
     }
 }
-
-
-
-
-
-
-
-
-
 
