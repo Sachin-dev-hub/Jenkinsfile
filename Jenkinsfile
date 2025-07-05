@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo '🔨 Building the project...'
-                sh 'mvn clean deploy -Dmaven.test.skip=true'
+                sh 'mvn clean install -Dmaven.test.skip=true'
             }
         }
 
