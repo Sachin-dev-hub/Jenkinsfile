@@ -18,12 +18,10 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-            environment {
-                scannerHome = tool 'sonarqube-scanner'
-            }
             steps {
                 withSonarQubeEnv('sonarqube-scanner') {
-                    sh "${scannerHome}/bin/sonar-scanner"
+                    echo '🔍 Running SonarQube analysis with Maven...'
+                    sh 'mvn sonar:sonar'
                 }
             }
         }
