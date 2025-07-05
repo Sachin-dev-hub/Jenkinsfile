@@ -19,7 +19,7 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('sonarqube-scanner') {
+                withSonarQubeEnv('MySonarServer') {
                     echo '🔍 Running SonarQube analysis with Maven...'
                     sh 'mvn sonar:sonar'
                 }
